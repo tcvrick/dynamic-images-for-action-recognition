@@ -1,3 +1,4 @@
 .idea/*
 dynamicimage/example_frames/*
 venv/*
+__pycache__

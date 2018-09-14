@@ -1,18 +1,20 @@
-# Dynamic Images for Action Recognition
+# Python Dynamic Images for Action Recognition
 
-Python implementation of technology discussed in 'Dynamic Image Networks for Action Recognition' by Bilen et al.
-Their paper and GitHub can be found here: https://github.com/hbilen/dynamic-image-nets
+Python implementation of the dynamic image technology discussed in 'Dynamic Image Networks for Action Recognition' by Bilen et al.
+Their paper and GitHub can be found as follows:
+* https://ieeexplore.ieee.org/document/7780700/
+* https://github.com/hbilen/dynamic-image-nets
 
-If you're planning on using this, please verify the correctness of the implementation for your own inputs and outputs!
+If you are planning on using this, please verify the correctness of the implementation for your provided inputs and outputs.
 
-# Installation
+## Installation
 
 Clone the directory, and install the requirements specified in the "requirements.txt" file.
 ~~~~
 pip install -r requirements.txt
 ~~~~
 
-# Example Usage
+## Example Usage
 ~~~~
 import glob
 import cv2
@@ -33,5 +35,7 @@ if __name__ == '__main__':
     main()
 ~~~~
 
-# Example Output
+## Example Output
+Source Video: https://www.youtube.com/watch?v=fXMDubfvoQE
+
 ![Dynamic Image Example](dynamic_image_example.JPG)
