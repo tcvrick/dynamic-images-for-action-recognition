@@ -1,12 +1,12 @@
 import glob
 import cv2
-import numpy as np
 import dynamicimage
+import numpy as np
 
 
 def main():
     frames = glob.glob('./example_frames/*.jpg')
-    frames = [cv2.imread(f) for f in frames]
+    frames = np.array([cv2.imread(f) for f in frames])
 
     dyn_image = dynamicimage.get_dynamic_image(frames, normalized=True)
     cv2.imshow('', dyn_image)

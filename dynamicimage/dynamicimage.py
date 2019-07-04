@@ -5,8 +5,6 @@ import numpy as np
 """ 
 Python implementation of technology discussed in 'Dynamic Image Networks for Action Recognition' by Bilen et al.
 Their paper and GitHub can be found here: https://github.com/hbilen/dynamic-image-nets
-
-If you're planning on using this, please verify the correctness of the implementation for your own inputs and outputs! 
 """
 
 
@@ -37,23 +35,17 @@ def _get_channel_frames(iter_frames, num_channels):
 
 
 def _compute_dynamic_image(frames):
-    """ Inspired by https://github.com/hbilen/dynamic-image-nets """
+    """ Adapted from https://github.com/hbilen/dynamic-image-nets """
     num_frames, h, w, depth = frames.shape
 
-    y = np.zeros((num_frames, h, w, depth))
-    ids = np.ones(num_frames)
-
-    fw = np.zeros(num_frames)
+    # Compute the coefficients for the frames.
+    coefficients = np.zeros(num_frames)
     for n in range(num_frames):
         cumulative_indices = np.array(range(n, num_frames)) + 1
-        fw[n] = np.sum(((2*cumulative_indices) - num_frames) / cumulative_indices)
+        coefficients[n] = np.sum(((2*cumulative_indices) - num_frames) / cumulative_indices)
 
-    for v in range(int(np.max(ids))):
-        indv = np.array(np.where(ids == v+1))
-
-        a1 = frames[indv, :, :, :]
-        a2 = np.reshape(fw, (indv.shape[1], 1, 1, 1))
-        a3 = a1 * a2
-        y[v, :, :, :] = np.sum(a3[0], axis=0)
-
-    return y[0]
+    # Multiply by the frames by the coefficients and sum the result.
+    x1 = np.expand_dims(frames, axis=0)
+    x2 = np.reshape(coefficients, (num_frames, 1, 1, 1))
+    result = x1 * x2
+    return np.sum(result[0], axis=0).squeeze()
