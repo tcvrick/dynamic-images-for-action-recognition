@@ -49,3 +49,24 @@ def _compute_dynamic_image(frames):
     x2 = np.reshape(coefficients, (num_frames, 1, 1, 1))
     result = x1 * x2
     return np.sum(result[0], axis=0).squeeze()
+
+
+def get_video_frames(video_path):
+    # Initialize the frame number and create empty frame list
+    video = cv2.VideoCapture(video_path)
+    frame_list = []
+
+    # Loop until there are no frames left.
+    try:
+        while True:
+            more_frames, frame = video.read()
+
+            if not more_frames:
+                break
+            else:
+                frame_list.append(frame)
+
+    finally:
+        video.release()
+
+    return frame_list
