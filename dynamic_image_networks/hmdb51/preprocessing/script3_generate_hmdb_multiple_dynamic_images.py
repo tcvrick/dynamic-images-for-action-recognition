@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from pathlib import Path
-from dynamic_image import get_video_frames, get_dynamic_image
+from dynamicimage import get_dynamic_image
 
 
 WINDOW_LENGTH = 10

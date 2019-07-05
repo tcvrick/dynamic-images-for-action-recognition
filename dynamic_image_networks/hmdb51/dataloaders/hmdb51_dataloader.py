@@ -25,7 +25,7 @@ def get_train_loader(fold_id: int,
     # --------------------------------------------------------------------------------
     # Load information from data-frame
     # --------------------------------------------------------------------------------
-    metadata = pd.read_csv(f'../training_scripts/hmdb51_metadata_split_{fold_id}.csv')
+    metadata = pd.read_csv(f'../preprocessing/hmdb51_metadata_split_{fold_id}.csv')
 
     # Create an additional row which contains the image paths of the dynamic images.
     image_paths = [str(Path(r'E:\hmdb51_org\multiple_dynamic_images') / row['category_name'] / row['name'])
@@ -135,8 +135,8 @@ class ImageDataset(data.Dataset):
 
 def main():
     # Visualize the dataloader for debug purposes.
-    train_dataloader, val_dataloader = get_train_loader(fold_id=1, batch_size=2, num_workers=0, image_augmenation=False,
-                                                        segment_size=20)
+    train_dataloader, val_dataloader = get_train_loader(fold_id=1, batch_size=5, num_workers=0, image_augmenation=False,
+                                                        segment_size=10)
     for j, data in enumerate(train_dataloader):
         for sample in data:
             for n in range(sample[0].size(0)):

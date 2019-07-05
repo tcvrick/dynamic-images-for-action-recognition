@@ -1,5 +1,5 @@
+# import apex - !!!! INCLUDE THIS IMPORT IF YOU WANT TO USE MIXED PRECISION TRAINING !!!!
 import torch
-import apex
 import os
 import sys
 import torch.optim as optim
@@ -8,6 +8,7 @@ from datetime import datetime
 from tqdm import tqdm
 from pathlib import Path
 
+# Make sure that the project root is in your PATH (i.e., the parent folder containing 'dynamic_image_networks').
 sys.path.append(str(Path('../../..').resolve()))
 
 # ---------------------------------------------------------------
@@ -34,7 +35,7 @@ def main():
     # GPU
     # ---------------------------------------------------------------
     device = torch.device("cuda:0")
-    fp16 = True
+    fp16 = False
     if fp16:
         print('!!! MIXED PRECISION TRAINING IS ENABLED -- ONLY USE FOR VOLTA AND TURING GPUs!!!')
 

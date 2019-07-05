@@ -1,6 +1,6 @@
 import cv2
 from pathlib import Path
-from action_recognition.utilities.dynamic_image import get_video_frames, get_dynamic_image
+from dynamicimage import get_video_frames
 
 
 def main():
@@ -29,12 +29,11 @@ def main():
 
             # Save the frames of the video. This process could be accelerated greatly by using ffmpeg if
             # available.
+            # cmd = f'ffmpeg -i "{video_path}" -vf fps={fps} -q:v 2 -s {target_resolution[1]}x{target_resolution[0]} "{output_dir / "%06d.jpg"}"'
             frames = get_video_frames(str(video_path))
             for i, frame in enumerate(frames):
                 frame = cv2.resize(frame, (224, 224))
                 cv2.imwrite(str(out_frame_folder / (str(i).zfill(6) + '.jpg')), frame)
-
-            # cmd = f'ffmpeg -i "{video_path}" -vf fps={fps} -q:v 2 -s {target_resolution[1]}x{target_resolution[0]} "{output_dir / "%06d.jpg"}"'
 
 
 if __name__ == '__main__':
