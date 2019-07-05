@@ -5,28 +5,25 @@ Their paper and GitHub can be found as follows:
 * https://ieeexplore.ieee.org/document/7780700/
 * https://github.com/hbilen/dynamic-image-nets
 
-If you are planning on using this, please verify the correctness of the implementation for your provided inputs and outputs.
-
 ## Installation
 
-Clone the directory, and install the requirements specified in the "requirements.txt" file.
+Clone the directory, and install the module and it's pre-requisites by running:
 ~~~~
-pip install -r requirements.txt
+python setup.py install
 ~~~~
 
 ## Example Usage
 ~~~~
 import glob
 import cv2
-import numpy as np
-import dynamicimage
+from dynamicimage import get_dynamic_image
 
 
 def main():
     frames = glob.glob('./example_frames/*.jpg')
     frames = [cv2.imread(f) for f in frames]
 
-    dyn_image = dynamicimage.get_dynamic_image(frames, normalized=True)
+    dyn_image = get_dynamic_image(frames, normalized=True)
     cv2.imshow('', dyn_image)
     cv2.waitKey()
 

@@ -1,14 +1,13 @@
 import glob
 import cv2
-import dynamicimage
-import numpy as np
+from dynamicimage import get_dynamic_image
 
 
 def main():
     frames = glob.glob('./example_frames/*.jpg')
-    frames = np.array([cv2.imread(f) for f in frames])
+    frames = [cv2.imread(f) for f in frames]
 
-    dyn_image = dynamicimage.get_dynamic_image(frames, normalized=True)
+    dyn_image = get_dynamic_image(frames, normalized=True)
     cv2.imshow('', dyn_image)
     cv2.waitKey()
 
